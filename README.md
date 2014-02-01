@@ -1,7 +1,7 @@
 Chatty
 ---------------------
 
-Example frontend for a hypothetical chat application
+Example frontend for a hypothetical chat application built using AngularJS.
 
 Usage
 --------
