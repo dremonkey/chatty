@@ -461,7 +461,7 @@ module.exports = function (grunt) {
     // Convert Angular templates to '.js'
     ngtemplates: {
       options: {
-        module: 'particle.templates', //  needs to match the name of an existing angular module
+        module: 'chatty.templates', //  needs to match the name of an existing angular module
         htmlmin: {
           collapseBooleanAttributes: true,
           collapseWhitespace: true,

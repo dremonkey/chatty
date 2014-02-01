@@ -18,7 +18,7 @@
     <!-- Needed by AngularUI Router to ensure resource links are correct-->
     <base href="/"></base>
 
-    <title>Scripted Bits</title>
+    <title>Chatty</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="particle">
+  <body ng-app="chatty" ng-controller="BaseCtrl" id="{{bodyId}}">
 
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
@@ -47,7 +47,27 @@
     <![endif]-->
     
     <!-- AngularJS Content -->
-    <div ui-view></div>
+    <div id="realm">
+      <header class="header">
+        <div class="container">
+          <h4 class="text-muted">
+            <a href="http://github.com/dremonkey/particle-angular-seed">github.com/dremonkey/particle-angular-seed</a>
+          </h4>
+        </div>
+      </header>
+
+      <div ui-view></div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>♥ for AngularJS, Animate.css, AngularUI, and Lodash whose libraries made this fun</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <!-- build:js scripts/app.vendor.js -->
     <!-- bower:js -->
@@ -59,7 +79,7 @@
     <script src="components/angular-resource/angular-resource.js"></script>
     <script src="components/angular-route/angular-route.js"></script>
     <script src="components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="components/angular-ui-utils/modules/utils.js"></script>
+    <script src="components/angular-ui-utils/ui-utils.js"></script>
     <script src="components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="components/lodash/dist/lodash.compat.js"></script>
     <script src="components/restangular/dist/restangular.min.js"></script>
@@ -72,10 +92,17 @@
     <!-- common module -->
     <script src="app/common/module.js"></script>
     <script src="app/common/services/utils.srv.js"></script>
-    <script src="app/common/directives/skrollr.dir.js"></script>
+
+    <!-- chatbox module -->
+    <script src="app/chatbox/module.js"></script>
+    <script src="app/chatbox/controllers/chat.ctrl.js"></script>
+    <script src="app/chatbox/directives/chat.dir.js"></script>
+    <script src="app/chatbox/directives/focus.dir.js"></script>
+    <script src="app/chatbox/services/chats.srv.js"></script>
 
     <!-- home module -->
     <script src="app/pages/module.js"></script>
+    <script src="app/pages/controllers/base.ctrl.js"></script>
     <script src="app/pages/controllers/home.ctrl.js"></script>
     <script src="app/pages/directives/home.dir.js"></script>
     <!-- endbuild -->

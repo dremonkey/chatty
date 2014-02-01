@@ -1,0 +1,40 @@
+<div ng-controller="ChatCtrl" class="chatty-chatbox">
+  <div class="content">
+    <div class="chatty-newmessage">
+      <form name="newmessage" role="form" class="form-horizontal" ng-submit="send(chat.text)">
+        <div class="form-group">
+          <div class="col-sm-12">
+            <label class="sr-only">New Message</label>
+            <input ng-model="chat.text" focus="startNewMessage" type="text" placeholder="{{chat.username}}: say something" class="form-control" required/>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="chatty-list">
+      <ul class="messages">
+        <li class="message" ng-repeat="msg in messages|limitTo:50">
+          <div class="col-sm-9">
+            <p class="msgtext"><a href="" ng-click="replyto(msg.username)">{{msg.username}}</a><span>{{msg.text}}</span></p>
+          </div>
+          <div class="col-sm-3">
+            <p class="msgtime">@{{msg.createdAt | date:'HH:mm:ss'}}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div chatty-setup class="overlay" ng-hide="usernameSet">
+      <div class="content">
+        <p>Welcome to the HackReactor applicant chat room. Pick your username and join the conversation.</p>
+        <form name="setup" class="form-inline" role="form">
+          <div class="form-group">
+            <label class="sr-only">Set Username</label>
+            <input ng-model="chat.username" type="text" placeholder="your username" class="form-control" required/>
+          </div>
+          <button ng-click="setusername()" class="btn btn-primary">set</button>  
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

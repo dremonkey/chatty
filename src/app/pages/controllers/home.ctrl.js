@@ -1,6 +1,5 @@
 'use strict';
 
-angular.module('particle.pages.controllers', [])
-  .controller('HomeCtrl', function ($scope) {
-    console.log($scope);
-  });
+angular.module('chatty.pages.controllers')
+
+  .controller('HomeCtrl', function () {});

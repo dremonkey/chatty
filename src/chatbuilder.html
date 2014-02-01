@@ -75,7 +75,7 @@
        * @param: msg (string) chat message text
        */
       Chat.display = function (msg) {
-        $('.messages').prepend('<li>' + msg + '</li>');
+        $('.messages').prepend('<li></li>').text(msg);
       }
 
       /**

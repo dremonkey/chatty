@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('particle.pages', ['ui.router.compat', 'particle.pages.controllers', 'particle.pages.directives'])
+angular.module('chatty.pages', ['ui.router.compat', 'chatty.pages.controllers', 'chatty.pages.directives'])
   .config(function ($stateProvider) {
     $stateProvider
       .state('home', {
@@ -9,3 +9,6 @@ angular.module('particle.pages', ['ui.router.compat', 'particle.pages.controller
         controller: 'HomeCtrl'
       });
   });
+
+
+angular.module('chatty.pages.controllers', []);
