@@ -3,6 +3,12 @@ Chatty
 
 Example frontend for a hypothetical chat application
 
+Usage
+--------
+```npm install // installs all node dependencies```
+```bower install // install all bower dependencies```
+```grunt serve // starts the server```
+
 Features
 --------
 
