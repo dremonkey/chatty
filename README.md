@@ -5,9 +5,9 @@ Example frontend for a hypothetical chat application
 
 Usage
 --------
-```npm install // installs all node dependencies```
-```bower install // install all bower dependencies```
-```grunt serve // starts the server```
+- ```npm install``` to install all node dependencies
+- ```bower install``` to install all bower dependencies
+- ```grunt serve``` to starts the server
 
 Features
 --------
