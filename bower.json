@@ -4,17 +4,16 @@
   "dependencies": {
     "angular": "~1.2.8",
     "angular-animate": "~1.2.5",
-    "angular-cookies": "1.2.6",
-    "angular-bootstrap": "~0.9.0",
+    
+    
     "angular-resource": "1.2.6",
-    "angular-route": "1.2.6",
+    
     "angular-sanitize": "1.2.6",
     "angular-ui-utils": "~0.1.0",
     "angular-ui-router": "git@github.com:angular-ui/ui-router.git#0.2.8-bowratic-tedium",
     "animate-css": "git@github.com:daneden/animate.css.git",
     "es5-shim": "~2.1.0",
-    "lodash": "~2.4.1",
-    "restangular": "~1.2.2"
+    "lodash": "~2.4.1"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

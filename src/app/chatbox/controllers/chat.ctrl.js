@@ -12,7 +12,7 @@ angular.module('chatty.chatbox.controllers')
     // Check for new messages
     $interval(function () {
       $scope.messages = chats.getMessages();
-    }, 1000);
+    }, 100);
 
     // Assign scope variables
     $scope.chat = {};

@@ -2,8 +2,8 @@
 
 angular.module('chatty.chatbox.services')
   
-  .factory('chats', function (Restangular, $resource, $interval, _) {
-    var _chats, _config, chats, base, date, lastMsgTime, messages;
+  .factory('chats', function ($resource, $interval, _) {
+    var _chats, _config, chats, date, lastMsgTime, messages;
 
     _config = {
       fetch: {
@@ -25,14 +25,11 @@ angular.module('chatty.chatbox.services')
     // chat resource
     _chats = $resource('https://api.parse.com/1/classes/chats', {}, _config);
 
-    // stores retrieved messages
-    messages = [];
-
-    base = Restangular.all('chats');
     chats = {};
     date = Date.now() - 1000 * 60 * 60 * 24; // get messages from the last 24 hours
     date = new Date(date);
     lastMsgTime = date.toISOString(); // time initialized
+    messages = []; // stores retrieved messages
     
     chats.fetch = function () {
       var params;
@@ -51,13 +48,6 @@ angular.module('chatty.chatbox.services')
 
       // stringify params.where
       params.where = JSON.stringify(params.where);
-
-      // base.getList(params).then(function (response) {
-      //   if (response.results[0]) {
-      //     lastMsgTime = response.results[0].createdAt;
-      //     messages = [].concat(response.results, messages);
-      //   }
-      // });
 
       _chats.fetch(params, function (data) {
         var _messages = [];
@@ -87,15 +77,11 @@ angular.module('chatty.chatbox.services')
       
       var data = {text: msg};
       _chats.send({}, data);
-
-      // base.post(data, function (response) {
-      //   console.log(response);
-      // });
     };
 
     $interval(function () {
       chats.fetch();
-    }, 3000);
+    }, 1000);
 
     return chats;
   });

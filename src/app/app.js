@@ -18,7 +18,7 @@ angular.module('chatty')
     $urlRouterProvider.otherwise('/');
 
     // enable the HTML5 push/pop history API  
-    $locationProvider.html5Mode(true);
+    // $locationProvider.html5Mode(true);
   })
 
   // grunt-ngmin does not work with non-core providers so use the angular min-safe notation
