@@ -12,3 +12,4 @@ angular.module('chatty.pages', ['ui.router.compat', 'chatty.pages.controllers', 
 
 
 angular.module('chatty.pages.controllers', []);
+angular.module('chatty.pages.directives', []);

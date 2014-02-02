@@ -1,13 +1,10 @@
 {
-  "name": "particle-angular-seed",
+  "name": "chatty",
   "version": "0.0.1",
   "dependencies": {
-    "angular": "~1.2.8",
+    "angular": "~1.2.10",
     "angular-animate": "~1.2.5",
-    
-    
     "angular-resource": "1.2.6",
-    
     "angular-sanitize": "1.2.6",
     "angular-ui-utils": "~0.1.0",
     "angular-ui-router": "git@github.com:angular-ui/ui-router.git#0.2.8-bowratic-tedium",

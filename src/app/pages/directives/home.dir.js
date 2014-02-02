@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('chatty.pages.directives', [])
+angular.module('chatty.pages.directives')
+
   .directive('home', function () {
     var directiveDefinitionObject = {
 
