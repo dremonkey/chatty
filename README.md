@@ -1,7 +1,7 @@
 Chatty
 ---------------------
 
-Example frontend for a hypothetical chat application built using AngularJS.
+Example frontend for a hypothetical chat application built using AngularJS. Currently only works in Chrome and Safari.
 
 Usage
 --------
