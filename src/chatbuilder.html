@@ -4,158 +4,192 @@
   <head>
     <meta charset="utf-8">
     <title>Chatbuilder</title>
+    
+    <link rel="stylesheet" href="styles/928667b3.app.vendor.css"/>
+    <link rel="stylesheet" href="styles/820f4fe5.app.main.css"/>
+
     <script src="http://chatbuilder.hackreactor.com/ChatBuilder.js"></script>
+
   </head>
   <body>
+    <div id="realm">
+      <header class="header">
+        <div class="container">
+        <div style="width: 500px; margin:0 auto;">
+          <h4 class="text-muted">Basic Chat Example</h4>
+          <p style="margin-top:10px;" class="text-muted">This is just the bare minimum needed to complete the assignment. Please see <a href="./index.html">index.html</a> for a better example.</p>
+        </div>
+        </div>
+      </header>
+      <div class="container">
+        <div class="chatty-chatbox" style="margin:0 auto;">
+          <div class="content">
+            <div class="chatty-newmessage">
+              <form name="newmessage" role="form" class="form-horizontal" id="msgForm">
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <label class="sr-only">New Message</label>
+                    <input type="text" placeholder="say something" class="form-control" required/>
+                  </div>
+                </div>
+              </form>
+            </div>
 
-    <script>
-      /*
-       *  Nice, you found the HTML source code for ChatBuilder! This document kicks everything off when you load it
-       *  in your browser, and is a starting point for the whole app. It's pretty incomplete though--you should
-       *  make your own version of it that works better!
-       *
-       *  You can't edit the code here until it's in a file on your hard drive, so copy this whole page of source
-       *  code and paste it into a plain text editor like Sublime Text 2 (http://www.sublimetext.com/). Save it as
-       *  a `.html` file, and open that file with Google Chrome. You can now edit it however you like, and refresh
-       *  the page to see your modifications take effect on how the application runs.
-       *
-       *  Fair warning: one or more of the steps ahead could require a good amount of research to understand all
-       *  the terms and technologies mentioned. Googling words you haven't heard before is a great idea. Just be
-       *  careful not to spend too long in 'research mode' without making any forward progress on your real goal of
-       *  completing the app!
-       *
-       *  When you've got this code saved as a local file, uncomment the line of JavaScript code below and open
-       *  the new file in Google Chrome. Your next instructions will be waiting for you in the JavaScript console.
-       *  If you already know the Chrome JS development tools pretty well, feel free to skip this opening tutorial
-       *  by calling the `.start()` function on `Chat.guide` instead of `.intro()`
-       *
-       *  NOTE: Please do not publish or share any of the code associated with this challenge. We've worked really
-       *  hard to build this material and publishing solutions diminishes its effectiveness.
-       */
-
-      // Your JavaScript code will go right here!
-      delete Chat.display;
-      delete Chat.fetch;
-      delete Chat.send;
-
-      // Retrieve the username
-      var username = getParams(window.location.href).username;
-
-
-      /**
-       * Helper to extract url parameters
-       */
-      function getParams (url) {
-        var strParams = url.split('?')[1].split('&');
-        var params = {};
-        for (var i=0; i<strParams.length; i++) {
-          var keyval = strParams[i].split('=');
-          if (keyval[0] && keyval[1])
-            params[keyval[0]] = keyval[1];
-        }
-        return params;
-      }
-
-
-      $(function () {
-        window.setInterval(function () {
-          Chat.fetch(function (arr) {
-            for (var i = arr.length - 1; i >= 0; i--) {
-              var msg = arr[i];
-              Chat.display(msg);
-            };
-          });
-        }, 3000);
-      });
-      
-
-      /**
-       * Outputs a chat message to the page
-       *
-       * @param: msg (string) chat message text
-       */
-      Chat.display = function (msg) {
-        var $li = $('<li></li>').text(msg);
-        $('.messages').prepend($li);
-      }
-
-      /**
-       * Retrieves chat messages form the server
-       *
-       * @param callback (function) callback function to execute when the chats have been gotten
-       */
-      var latestMsgTime;
-      Chat.fetch = function (callback) {
-        var url = 'https://api.parse.com/1/classes/chats?';
-        var where = {};
-        var params = {
-          order: '-createdAt',
-        };
-
-        where.username = {
-          $ne: 'RoboChat'
-        };
-
-        // Retrieve new messages only
-        if (latestMsgTime) {
-          where.createdAt = {
-            $gt: {
-              __type: 'Date',
-              iso: latestMsgTime
-            }
-          };
-        }
-
-        params.where = JSON.stringify(where);
-        console.log(params.where);
-
-        url += $.param(params, true);
-        console.log(url);
-        $.get(url, function (data, status) {
-          var messages = [];
-
-          console.log(data);
-
-          // prepare the returned data for display
-          for (var i = 0; i < data.results.length; i++) {
-            messages.push(data.results[i].text);
-
-            // if on the last item... save createdAt time
-            if (i == 0) {
-              latestMsgTime = data.results[i].createdAt;
-            }
-          }
-
-          callback(messages);
-        });
-      }
-
-      /**
-       * Gets the input value when a user clicks the 'send' button, sends the message to the server
-       * and resets the input field
-       */
-      Chat.send = function () {
-        var data = {};
-        data.text = username + ': ' + $('input').val();
-        data = JSON.stringify(data);
-
-        // send the message
-        $.post('https://api.parse.com/1/classes/chats', data, function (data, status) {
-          console.log(data, status);
-        });
-
-        // reset the form
-        $('input').val('');
-      }
-
-      Chat.guide.start();
-    </script>
-
-    <h2>Borken Chat</h2>
-
-    <input class="draft" type="text"/> <button class="send" onclick="Chat.send()">Send</button>
-
-    <ul class="messages"></ul>
+            <div class="chatty-list">
+              <ul class="messages"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </body>
+
+  <script>
+    /*
+     *  Nice, you found the HTML source code for ChatBuilder! This document kicks everything off when you load it
+     *  in your browser, and is a starting point for the whole app. It's pretty incomplete though--you should
+     *  make your own version of it that works better!
+     *
+     *  You can't edit the code here until it's in a file on your hard drive, so copy this whole page of source
+     *  code and paste it into a plain text editor like Sublime Text 2 (http://www.sublimetext.com/). Save it as
+     *  a `.html` file, and open that file with Google Chrome. You can now edit it however you like, and refresh
+     *  the page to see your modifications take effect on how the application runs.
+     *
+     *  Fair warning: one or more of the steps ahead could require a good amount of research to understand all
+     *  the terms and technologies mentioned. Googling words you haven't heard before is a great idea. Just be
+     *  careful not to spend too long in 'research mode' without making any forward progress on your real goal of
+     *  completing the app!
+     *
+     *  When you've got this code saved as a local file, uncomment the line of JavaScript code below and open
+     *  the new file in Google Chrome. Your next instructions will be waiting for you in the JavaScript console.
+     *  If you already know the Chrome JS development tools pretty well, feel free to skip this opening tutorial
+     *  by calling the `.start()` function on `Chat.guide` instead of `.intro()`
+     *
+     *  NOTE: Please do not publish or share any of the code associated with this challenge. We've worked really
+     *  hard to build this material and publishing solutions diminishes its effectiveness.
+     */
+
+    // Your JavaScript code will go right here!
+    delete Chat.display;
+    delete Chat.fetch;
+    delete Chat.send;
+
+    // Retrieve the username
+    var username = getParams(window.location.href).username;
+
+
+    /**
+     * Helper to extract url parameters
+     */
+    function getParams (url) {
+      var strParams = url.split('?')[1].split('&');
+      var params = {};
+      for (var i=0; i<strParams.length; i++) {
+        var keyval = strParams[i].split('=');
+        if (keyval[0] && keyval[1])
+          params[keyval[0]] = keyval[1];
+      }
+      return params;
+    }
+
+
+    $(function () {
+      // catch submit event
+      $('#msgForm').submit(function (event) {
+        event.preventDefault();
+        Chat.send();
+        return false;
+      });
+
+      window.setInterval(function () {
+        Chat.fetch(function (arr) {
+          for (var i = arr.length - 1; i >= 0; i--) {
+            var msg = arr[i];
+            Chat.display(msg);
+          };
+        });
+      }, 3000);
+    });
+    
+
+    /**
+     * Outputs a chat message to the page
+     *
+     * @param: msg (string) chat message text
+     */
+    Chat.display = function (msg) {
+      var $li = $('<li class="message"><div class="col-md-12"><p class="msgtext"></p></div></li>');
+      $li.find('p').text(msg);
+      $('.messages').prepend($li);
+    }
+
+    /**
+     * Retrieves chat messages form the server
+     *
+     * @param callback (function) callback function to execute when the chats have been gotten
+     */
+    var latestMsgTime;
+    Chat.fetch = function (callback) {
+      var url = 'https://api.parse.com/1/classes/chats?';
+      var where = {};
+      var params = {
+        order: '-createdAt',
+      };
+
+      where.username = {
+        $ne: 'RoboChat'
+      };
+
+      // Retrieve new messages only
+      if (latestMsgTime) {
+        where.createdAt = {
+          $gt: {
+            __type: 'Date',
+            iso: latestMsgTime
+          }
+        };
+      }
+
+      params.where = JSON.stringify(where);
+
+      url += $.param(params, true);
+      $.get(url, function (data, status) {
+        var messages = [];
+
+        // prepare the returned data for display
+        for (var i = 0; i < data.results.length; i++) {
+          messages.push(data.results[i].text);
+
+          // if on the last item... save createdAt time
+          if (i == 0) {
+            latestMsgTime = data.results[i].createdAt;
+          }
+        }
+
+        callback(messages);
+      });
+    }
+
+    /**
+     * Gets the input value when a user clicks the 'send' button, sends the message to the server
+     * and resets the input field
+     */
+    Chat.send = function () {
+      var data = {};
+      data.text = username + ': ' + $('input').val();
+      data = JSON.stringify(data);
+
+      // send the message
+      $.post('https://api.parse.com/1/classes/chats', data, function (data, status) {
+        console.log(data, status);
+      });
+
+      // reset the form
+      $('input').val('');
+    }
+
+    Chat.guide.start();
+  </script>
+
 </html>
